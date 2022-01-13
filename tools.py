@@ -59,7 +59,7 @@ def plot_wordcloud(content_cut, filename):
     plt.figure()
     plt.imshow(WordCloud(font_path='ext/jf-openhuninn-1.1/jf-openhuninn-1.1.ttf').generate(' '.join(content_cut)))
     plt.axis('off')
-    plt.savefig(filename)
+    plt.savefig(filename, bbox_inches='tight')
     
 def plot_wordcloud_by_userid(userid):
     content = get_content_of_user_from_sql(userid)
