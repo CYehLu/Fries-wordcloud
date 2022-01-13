@@ -67,7 +67,7 @@ def plot_wordcloud_by_userid(userid):
     if len(content) == 0:
         raise ValueError(f"No content of {userid}")
         
-    content_cut = cut_content_into_words()
+    content_cut = cut_content_into_words(content)
     
     common_words = get_common_words()
     content_cut_filtered = list(filter(lambda s: s not in common_words, content_cut))
