@@ -15,6 +15,14 @@ def get_common_words():
         common_words = list(map(lambda s: s.strip(), file.readlines()))
     return common_words
 
+def get_all_userid():
+    """
+    Return all user id (return type: List[str])
+    """
+    with open('all_userid.txt') as file:
+        all_userid = list(map(lambda s: s.strip(), file.readlines()))
+    return all_userid
+
 def get_content_from_sql():
     """
     Return all contents
@@ -61,7 +69,7 @@ def plot_wordcloud(content_cut, filename):
     plt.axis('off')
     plt.savefig(filename, bbox_inches='tight')
     
-def plot_wordcloud_by_userid(userid):
+def plot_wordcloud_by_userid(userid, filter_other_id=True):
     content = get_content_of_user_from_sql(userid)
     
     if len(content) == 0:
@@ -69,8 +77,14 @@ def plot_wordcloud_by_userid(userid):
         
     content_cut = cut_content_into_words(content)
     
+    # filter out common words
     common_words = get_common_words()
     content_cut_filtered = list(filter(lambda s: s not in common_words, content_cut))
+    
+    # filter out others ID
+    if filter_other_id:
+        all_userid = get_all_userid()
+        content_cut_filtered = list(filter(lambda s: s not in all_userid, content_cut_filtered))
     
     plot_wordcloud(content_cut, f'./wordclouds/{userid}.png')
     plot_wordcloud(content_cut_filtered, f'./wordclouds/{userid}_filtered.png')
