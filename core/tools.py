@@ -89,5 +89,5 @@ def plot_wordcloud_by_userid(userid, filter_other_id=True):
         all_userid = get_all_userid()
         content_cut_filtered = list(filter(lambda s: s not in all_userid, content_cut_filtered))
     
-    plot_wordcloud(content_cut, PATH + f'./wordclouds/{userid}.png')
-    plot_wordcloud(content_cut_filtered, PATH + f'./wordclouds/{userid}_filtered.png')
+    plot_wordcloud(content_cut, PATH + f'wordclouds/{userid}.png')
+    plot_wordcloud(content_cut_filtered, PATH + f'wordclouds/{userid}_filtered.png')
