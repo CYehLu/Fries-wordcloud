@@ -7,8 +7,13 @@ from wordcloud import WordCloud
 
 
 PUNC = """!()-[]{};:'"\, <>./?@#$%^&*_~！？，。；：、（）「」【】《》〈〉『』"""
-PATH = os.path.dirname(__file__) + '\\'
 
+if os.path.basename(__file__) in os.listdir('./'):
+    PATH = './'
+else:
+    # the program is executed at the previous folder
+    PATH = 'core/'
+    
 
 def get_common_words():
     """
