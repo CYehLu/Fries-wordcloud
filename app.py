@@ -18,6 +18,8 @@ def home():
                     return send_file(f'core/wordclouds/{userid}_filtered.png')
                 except ValueError:
                     return render_template('error.html')
+                except Except as e:
+                    return e
             
     return render_template('home.html')
 
